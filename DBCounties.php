@@ -55,14 +55,12 @@ class DBCounties extends DB
                     $isFirst = false;
                     continue;
                 }
-                $county = implode($county);
-                $county_data = explode(";",$county);
-                if (isset($county_data[0]) && isset($county_data[1]) && isset($county_data[2]) && isset($county_data[3]) && isset($county_data[4])) {
-                $insert = $this->mysqli->query("UPDATE counties SET capital = '$county_data[2]', population = '$county_data[1]', crest = '$county_data[3]', flag = '$county_data[4]' WHERE county = '$county_data[0]'");
+                if (isset($county[0]) && isset($county[1]) && isset($county[2]) && isset($county[3]) && isset($county[4])) {
+                $insert = $this->mysqli->query("UPDATE counties SET capital = '$county[2]', population = '$county[1]', crest = '$county[3]', flag = '$county[4]' WHERE county = '$county[0]'");
                 if(!$insert) {
-                    $errors[] = $county_data[2];
+                    $errors[] = $county[2];
                 }
-                echo"$county_data[2]\n";
+                echo"$county[2]\n";
                 }                    
             }
         }
@@ -77,24 +75,26 @@ class DBCounties extends DB
         return $this->mysqli->query($query)->fetch_assoc();
     }
 
-    public function getAll(array $county)
+    public function getAll()
     {
         $query = "SELECT * FROM counties";
 
-        return $this->mysqli->query($query)->fetch_assoc();
+        return $this->mysqli->query($query)->fetch_all(MYSQLI_ASSOC);
+
     }
 
-    public function displayTable(array $csv)
+    public function displayTable()
     {
-        $data = $this->getAll($csv);
+        $data = $this->getAll();
+        
         echo "<tbody>";
         foreach($data as $sor)
         {
             echo "
             <tr>
-                <td>{$sor[0]}</td>
-                <td>{$sor[1]}</td>
-                <td>{$sor[2]}</td>
+                <td>{$sor['county']}</td>
+                <td>{$sor['capital']}</td>
+                <td>{$sor['population']}</td>
             </tr>";
         }
         echo "</tbody'>";
