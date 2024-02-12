@@ -47,7 +47,7 @@ class DBCounties extends DB
         $row = $result->fetch_array(MYSQLI_NUM);
         $errors = [];
         $isFirst = true;
-        if(empty($row)) {
+        if(is_null($row[0])) {
             foreach($data as $county){
                 if($isFirst)
                 {
@@ -61,6 +61,7 @@ class DBCounties extends DB
                 echo"$county[0]\n";                    
             }
         }
+        
         return $errors;
     }
 
@@ -69,5 +70,28 @@ class DBCounties extends DB
         $query = "SELECT * FROM counties WHERE county = $county";
 
         return $this->mysqli->query($query)->fetch_assoc();
+    }
+
+    public function getAll(array $county)
+    {
+        $query = "SELECT * FROM counties";
+
+        return $this->mysqli->query($query)->fetch_assoc();
+    }
+
+    public function displayTable(array $csv)
+    {
+        $data = $this->getAll($csv);
+        echo "<tbody>";
+        foreach($data as $sor)
+        {
+            echo "
+            <tr>
+                <td>{$sor[0]}</td>
+                <td>{$sor[1]}</td>
+                <td>{$sor[2]}</td>
+            </tr>";
+        }
+        echo "</tbody'>";
     }
 }

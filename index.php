@@ -28,6 +28,7 @@
         <table>
         <tbody>
     ";
+    $countyMaker->displayTable($csvData);
 
     echo"
         </tbody>
