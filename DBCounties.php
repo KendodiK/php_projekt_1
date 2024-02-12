@@ -24,17 +24,18 @@ class DBCounties extends DB
                     $isFirst = false;
                     continue;
                 }
-                $init = $this->mysqli->query("SELECT county FROM counties WHERE county = '$county[0]'");
-                if(!$init->num_rows)
-                {
-                    
-                    $insert = $this->mysqli->query("INSERT INTO counties (county) VALUES ('$county[0]')");
-                    if(!$insert) {
-                        $errors[] = $county[0];
+                if ($county[0] != ""){
+                    $init = $this->mysqli->query("SELECT county FROM counties WHERE county = '$county[0]'");
+                    if(!$init->num_rows)
+                    {
+                        
+                        $insert = $this->mysqli->query("INSERT INTO counties (county) VALUES ('$county[0]')");
+                        if(!$insert) {
+                            $errors[] = $county[0];
+                        }
+                        echo"$county[0]\n";
                     }
-                    echo"$county[0]\n";
-                }
-                    
+                }  
             }
         }
         return $errors;
@@ -54,11 +55,15 @@ class DBCounties extends DB
                     $isFirst = false;
                     continue;
                 }
-                $insert = $this->mysqli->query("INSERT INTO counties (capital, population, crest, flag) VALUES ('$county[2]','$county[1]','$county[3]','$county[4]')");
+                $county = implode($county);
+                $county_data = explode(";",$county);
+                if (isset($county_data[0]) && isset($county_data[1]) && isset($county_data[2]) && isset($county_data[3]) && isset($county_data[4])) {
+                $insert = $this->mysqli->query("UPDATE counties SET capital = '$county_data[2]', population = '$county_data[1]', crest = '$county_data[3]', flag = '$county_data[4]' WHERE county = '$county_data[0]'");
                 if(!$insert) {
-                    $errors[] = $county[0];
+                    $errors[] = $county_data[2];
                 }
-                echo"$county[0]\n";                    
+                echo"$county_data[2]\n";
+                }                    
             }
         }
         
