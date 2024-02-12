@@ -63,4 +63,11 @@ class DBCounties extends DB
         }
         return $errors;
     }
+
+    public function get(string $county): array
+    {
+        $query = "SELECT * FROM counties WHERE county = $county";
+
+        return $this->mysqli->query($query)->fetch_assoc();
+    }
 }
