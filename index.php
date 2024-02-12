@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>Magyarország vármegyéi</h1>
     <?php
     require_once("DBCounties.php");
     require_once("DBCities.php");
@@ -19,7 +20,13 @@
     $csvData = getCsvData($fileName);
 
     $countyMaker->fillCounties($csvData);
+    $fileName = 'county_data.csv';
+    $csvData = getCsvData($fileName);
+    $countyMaker->fillCountiesWithCountyData($csvData);
     $cityMaker->fillCities($csvData);
     ?>
+    <form>
+        
+    </form>
 </body>
 </html>
