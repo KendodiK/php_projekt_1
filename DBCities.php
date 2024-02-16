@@ -18,18 +18,19 @@ class DBCities extends DB
         $errors = [];
         $isFirst = true;
         if(empty($row)) {
-            foreach($data as $county){
+            foreach($data as $city){
                 if($isFirst)
                 {
                     $isFirst = false;
                     continue;
                 }
-                $insert = $this->mysqli->query("INSERT INTO cities VALUES ('$county[0]', '$county[1]', '$county[2]')");
+                if(isset($city[0]) && isset($city[1]) && isset($city[2])){
+                $insert = $this->mysqli->query("INSERT INTO cities VALUES ('$city[0]', '$city[1]', '$city[2]')");
                 if(!$insert) {
-                    $errors[] = $county[0];
+                    $errors[] = $city[0];
                 }
-                echo"$county[0]\n";
-                
+                echo"$city[0]\n";
+                }
                     
             }
         }

@@ -18,12 +18,12 @@
 
     $fileName = 'zip_codes.csv';
     $csvData = getCsvData($fileName);
+    $cityMaker->fillCities($csvData);
 
     $countyMaker->fillCounties($csvData);
     $fileName = 'county_data.csv';
     $csvData = getCsvData($fileName);
     $countyMaker->fillCountiesWithCountyData($csvData);
-    $cityMaker->fillCities($csvData);
     echo"
         <table>
         <tbody>
