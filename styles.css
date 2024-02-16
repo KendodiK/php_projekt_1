@@ -3,9 +3,12 @@ table, th, td {
 }
 table {
     border-collapse: collapse;
+    width: auto;
 }
 td{
     align-content: center;
+    text-align: center;
+    width: auto;
 }
 img{
     width: 5%;
