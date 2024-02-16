@@ -96,7 +96,9 @@ class DBCounties extends DB
             <tr>
                 <td>{$sor['county']}</td>
                 <td>{$sor['capital']}</td>
-                <td>{$sor['population']} <img src='./cimerek/Bacs-kiskun_C.svg' alt='kaka'> <button id='lenyit'>Adatok</button> </td>
+                <td>{$sor['population']}</td>
+                <td><img src='./cimerek/{$sor['crest']}' alt='kaka'></td>
+                <td><button id='lenyit'>Adatok</button></td>
             </tr>";
         }
         echo "</table>
