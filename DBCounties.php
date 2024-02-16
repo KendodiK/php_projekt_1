@@ -56,7 +56,7 @@ class DBCounties extends DB
                     continue;
                 }
                 if (isset($county[0]) && isset($county[1]) && isset($county[2]) && isset($county[3]) && isset($county[4])) {
-                $insert = $this->mysqli->query("UPDATE counties SET capital = '$county[2]', population = '$county[1]', crest = '$county[3]', flag = '$county[4]' WHERE county = '$county[0]'");
+                    $insert = $this->mysqli->query("UPDATE counties SET capital = '$county[2]', population = '$county[1]', crest = '$county[3]', flag = '$county[4]' WHERE county = '$county[0]'");
                 if(!$insert) {
                     $errors[] = $county[2];
                 }
