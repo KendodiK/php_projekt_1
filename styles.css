@@ -1,0 +1,15 @@
+table, th, td {
+    border: 1px solid;
+}
+table {
+    border-collapse: collapse;
+}
+td{
+    align-content: center;
+}
+img{
+    width: 5%;
+    height: auto;
+    margin-left: 5px;
+    margin-right: 5px;
+}

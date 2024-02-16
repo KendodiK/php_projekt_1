@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vármegyék</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>Magyarország vármegyéi</h1>
@@ -24,16 +25,8 @@
     $csvData = getCsvData($fileName);
     $countyMaker->fillCountiesWithCountyData($csvData);
     $cityMaker->fillCities($csvData);
-    echo"
-        <table>
-        <tbody>
-    ";
     $countyMaker->displayTable($csvData);
-
-    echo"
-        </tbody>
-        </table>
-    ";
     ?>
+    
 </body>
 </html>
