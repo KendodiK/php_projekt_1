@@ -87,7 +87,7 @@ class DBCounties extends DB
     {
         $data = $this->getAll();
         
-        echo "<form id='table_id'>
+        echo "<form>
         <table>
         <tbody>";
         foreach($data as $sor)
@@ -97,9 +97,13 @@ class DBCounties extends DB
                 <td>{$sor['county']}</td>
                 <td>{$sor['capital']}</td>
                 <td>{$sor['population']}</td>
-                <td><img src='{$sor['crest']}' alt='kaka'></td>
-                <td><button id='lenyit'>Adatok</button></td>
+                <td><img src='{$sor['crest']}' alt='nuh uh'></td>
+                <td><button id='dropdownId' name='{$sor['county']}'>Városok</button></td>
             </tr>";
+            $post = $_POST('dropdownId');
+            if(isset($post)) {
+                echo"<tr></tr>";
+            }
         }
         echo "</table>
         </tbody'>
