@@ -5,7 +5,7 @@ class DBCounties extends DB
 {
     public function createTableCounties()
     {
-        $query = 'CREATE TABLE IF NOT EXISTS counties(county varchar(35), capital varchar(35), population int, crest varchar(35), flag varchar(35))';
+        $query = 'CREATE TABLE IF NOT EXISTS counties(id int, county varchar(35), capital varchar(35), population int, crest varchar(35), flag varchar(35))';
         return $this->mysqli->query($query);
     }
 
@@ -17,6 +17,7 @@ class DBCounties extends DB
         $row = $result->fetch_array(MYSQLI_NUM);
         $errors = [];
         $isFirst = true;
+        $id = 0;
         if(empty($row)) {
             foreach($data as $county){
                 if($isFirst)
@@ -29,7 +30,8 @@ class DBCounties extends DB
                     if(!$init->num_rows)
                     {
                         
-                        $insert = $this->mysqli->query("INSERT INTO counties (county) VALUES ('$county[0]')");
+                        $insert = $this->mysqli->query("INSERT INTO counties (id, county) VALUES ('$id', '$county[0]')");
+                        $id = $id + 1;
                         if(!$insert) {
                             $errors[] = $county[0];
                         }
