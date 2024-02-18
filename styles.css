@@ -3,7 +3,10 @@ table, th, td {
 }
 table {
     border-collapse: collapse;
-    width: auto;
+    width: 25%;
+}
+tbody{
+    margin-left: 5%;
 }
 td{
     align-content: center;
@@ -11,8 +14,8 @@ td{
     width: auto;
 }
 img{
-    width: 5%;
-    height: auto;
-    margin-left: 5px;
-    margin-right: 5px;
+    width: 25%;
+    height: 25%;
+    /* margin-left: 5px;
+    margin-right: 5px; */
 }
