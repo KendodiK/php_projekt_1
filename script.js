@@ -5,9 +5,6 @@ $(document).ready(function () {
             url: 'display_cities.php',
             type: 'POST',
             data: {selectedId: selectedId},
-            succes: function (response) {
-                $('citiesTr').html(response);
-            }
         });
     });
 });

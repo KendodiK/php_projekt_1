@@ -37,4 +37,18 @@ class DBCities extends DB
         return $errors;
     }
 
+    public function getABCbyCounty($county) {
+        $resoult = $this->mysqli->query("SELECT * FROM cities WHERE county = '$county'");
+        $cities = $resoult->fetch_all(MYSQLI_ASSOC);
+        $abc = [];
+        foreach($cities as $city){
+            $ch = strtoupper($city['city'][0]);
+            if (!in_array($ch, $abc)) {
+                $abc[] = $ch;
+            }
+        }
+        
+        return $abc;
+    }
+
 }
