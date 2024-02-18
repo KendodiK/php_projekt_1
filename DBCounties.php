@@ -95,16 +95,20 @@ class DBCounties extends DB
         foreach($data as $sor)
         {
             echo "
+            <form>
             <tr>
                 <td>{$sor['county']}</td>
                 <td>{$sor['capital']}</td>
                 <td>{$sor['population']}</td>
                 <td><img src='{$sor['crest']}' alt='nuh uh'></td>
-                <form><td><button for='dropdownId' id='dropdownId' name='{$sor['id']}'>Városok</button></td>
+                <td>
+                <label for='dropdownId'>
+                <button id='dropdownId' name='{$sor['county']}'>Városok</button>
+                </label>
+                </td>
             </tr>
-            <tr id='citiesTr' style='display: none'>
-                <td colspan='5'></td>
-            </tr>
+            <label for='citiesTr'>
+            </label>
             </form>";
         }
         echo "</table>

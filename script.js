@@ -1,10 +1,10 @@
 $(document).ready(function () {
     $('#dropdownId').change(function () {
-        var selectedId = $(this).val();
+        var selectedCounty = $(this).val();
         $.ajax({
             url: 'display_cities.php',
             type: 'POST',
-            data: {selectedId: selectedId},
+            data: {selectedCounty: selectedCounty},
         });
     });
 });
