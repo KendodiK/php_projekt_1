@@ -108,6 +108,9 @@ class DBCounties extends DB
                 </td>
             </tr>
             <label for='citiesTr'>
+                <tr id='citiesTr' name='citiesTr' style='display: none'>
+                <td colspan='4'></td>
+                </tr>
             </label>
             </form>";
         }
