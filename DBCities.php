@@ -29,6 +29,7 @@ class DBCities extends DB
                 if(!$insert) {
                     $errors[] = $city[0];
                 }
+                //csak feltöltésnél
                 echo"$city[0]\n";
                 }
                     
