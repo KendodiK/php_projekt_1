@@ -5,7 +5,7 @@ class DBCounties extends DB
 {
     public function createTableCounties()
     {
-        $query = 'CREATE TABLE IF NOT EXISTS counties(id int, county varchar(35), capital varchar(35), population int, crest varchar(35), flag varchar(35))';
+        $query = 'CREATE TABLE IF NOT EXISTS counties(id int, county varchar(35), capital varchar(35), population int, crest varchar(50), flag varchar(35))';
         return $this->mysqli->query($query);
     }
 
@@ -35,6 +35,7 @@ class DBCounties extends DB
                         if(!$insert) {
                             $errors[] = $county[0];
                         }
+                        //csak feltöltésre
                         echo"$county[0]\n";
                     }
                 }  
@@ -108,6 +109,7 @@ class DBCounties extends DB
                 </td>
             </tr>
             <label for='citiesTr'>
+
             </label>
             </form>";
         }
