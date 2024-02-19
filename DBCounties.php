@@ -1,5 +1,6 @@
 <?php 
 require_once 'DB.php';
+require_once 'DBCities.php';
 
 class DBCounties extends DB
 {
@@ -114,17 +115,25 @@ class DBCounties extends DB
                 <button  onclick='citiesDisp(\"{$sor['county']}\")'>Városok</button>
                 </td>
             </tr>
-            <label for='citiesTr'>
-                <div id='{$sor['county']}'>
-                    <tr style='display: none'>
-                        <td colspan='4'></td>
-                    </tr>
-                </div>
+            <label for='{$sor['county']}Id'>
+                <tr id='{$sor['county']}Id'>
+                    <td colspan='5' style='display:  none'></td>
+                </tr>
+            </label>
+            <label for='{$sor['county']}IdC'>
+                <tr id='{$sor['county']}IdC'>
+                    <td colspan='5' style='display:  none'></td>
+                </tr>
             </label>";
         }
         $result .= "</table>
         </tbody'>";
 
         return $result;
+    }
+
+    public function displayAbc($county)
+    {
+        
     }
 }

@@ -38,11 +38,6 @@ class DBCities extends DB
         return $errors;
     }
 
-    public function getCityByCounty($county) {
-        $query = "SELECT * FROM cities WHERE county = '$county'";
-        return $this->mysqli->$query->fetch_all(MYSQLI_ASSOC);
-    }
-
     public function getABCbyCounty($county) {
         $resoult = $this->mysqli->query("SELECT * FROM cities WHERE county = '$county'");
         $cities = $resoult->fetch_all(MYSQLI_ASSOC);
@@ -57,4 +52,10 @@ class DBCities extends DB
         return $abc;
     }
 
+    public function getAbcCities($char, $county)
+    {
+        $result = $this->mysqli->query("SELECT * FROM cities WHERE city LIKE '$char%' AND county = '$county'");
+        return $result;
+    }
+ 
 }
