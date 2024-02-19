@@ -9,12 +9,14 @@ if(isset($_POST['selectedCounty'])) {
     $abc = $DBCities->getABCbyCounty($selectedCounty);
 
     if(isset($selectedCounty)){
-        echo"<tr>
-        <td colspan='4'>";
-        foreach($abc as $ch) {
-            echo $ch;
-        }
-        echo"</td>
+        $resoult = "<tr>
+            <td colspan='4'>";
+            foreach($abc as $ch) {
+                $resoult .= $ch;
+            }
+        $resoult .= "</td>
         </tr>";
     }
-}
+
+    return $resoult;
+}   

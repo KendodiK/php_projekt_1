@@ -90,32 +90,41 @@ class DBCounties extends DB
     {
         $data = $this->getAll();
         
-        echo "
+        $result = "
         <table>
-        <tbody>";
+        <tbody>
+        <tr>
+                <td>Vármegye</td>
+                <td>Megyeszékhely</td>
+                <td>Megye lakossága</td>
+                <td>Megye címere</td>
+                <td>
+                Városok
+                </td>
+            </tr>";
         foreach($data as $sor)
         {
-            echo "
-            <form>
+            $result .= "
             <tr>
                 <td>{$sor['county']}</td>
                 <td>{$sor['capital']}</td>
                 <td>{$sor['population']}</td>
                 <td><img src='{$sor['crest']}' alt='nuh uh'></td>
                 <td>
-                <label for='dropdownId'>
-                <button id='dropdownId' name='{$sor['county']}'>Városok</button>
-                </label>
+                <button  onclick='citiesDisp(\"{$sor['county']}\")'>Városok</button>
                 </td>
             </tr>
             <label for='citiesTr'>
-                <tr id='citiesTr' name='citiesTr' style='display: none'>
-                <td colspan='4'></td>
-                </tr>
-            </label>
-            </form>";
+                <div id='{$sor['county']}'>
+                    <tr style='display: none'>
+                        <td colspan='4'></td>
+                    </tr>
+                </div>
+            </label>";
         }
-        echo "</table>
+        $result .= "</table>
         </tbody'>";
+
+        return $result;
     }
 }

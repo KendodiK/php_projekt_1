@@ -28,8 +28,10 @@
     $csvData = getCsvData($fileName);
     $countyMaker->fillCountiesWithCountyData($csvData);
     $cityMaker->fillCities($csvData);
-    $countyMaker->displayTable($csvData);
+    $out = $countyMaker->displayTable($csvData);
+    echo $out;
     ?>
+
     
 </body>
 </html>
