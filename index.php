@@ -30,7 +30,8 @@
     $cityMaker->fillCities($csvData);
     $out = $countyMaker->displayTable();
     echo $out;
-    if (isset($_POST["btn-del"])) {
+
+      if (isset($_POST["btn-del"])) {
         $id = $_POST["btn-del"];
         $cityMaker->delete($id);
     }
@@ -38,12 +39,42 @@
         $id = $_POST["btn-mod"];
         $cityMaker->update($id, $ujnev);
     }
-    // if (isset($_POST["btn-new"])) {
-    //     $id = $_POST["btn-mod"];
-    //     $cityMaker->update($id, $ujnev);
-    // }
     ?>
 
+    <div>
+        <h2>Város hozzáadása</h2>
+        <form>
+            <p><a>Város neve:</a>
+            <input type="text" id="newCityName"></p>
+            <p><a>Város irányítószáma:</a>
+            <input type="number" id="newCityPostalCode"></p>
+            <p><a>Megye:</a>
+            <select name="counties" id="chosenCounty">
+                <?php
+                    $counties = $countyMaker->getAll();
+                    foreach($counties as $county){
+                        echo"<option value='{$county['id']}'>{$county['county']}</option>";
+                    }
+                ?>
+            </select></p>
+            <input id='btn-new' type="submit" value="Város felvétele"></p>
+        </form> 
+    </div>
     
+    <?php
+        if (isset($_POST["btn-new"])) {
+        $name = $_POST["newCityName"];
+        $code = $_POST["newCityPostalCode"];
+        $county = $_POST["chosenCounty"];
+        $cityMaker->add($name, $code, $county);
+        }
+    ?>
+
+    <div>
+        <h2>Város keresése</h2>
+        <input id="cityForSearch" type="text">
+        <input type="button" id="btn-search" value="keresés" onclick="search()">
+        <label for="lb-search"><p>blalba</p></label>
+    </div>
 </body>
 </html>

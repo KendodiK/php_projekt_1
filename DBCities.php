@@ -71,13 +71,24 @@ class DBCities extends DB
         return $this->mysqli->get($id);
     }
 
-    public function get(int $id): array
+    public function get($city)
     {
-        $query = "SELECT * FROM cities WHERE id = $id";
+        $query = "SELECT * FROM cities WHERE city = $city";
 
         return $this->mysqli->query($query)->fetch_assoc();
     }
 
-
+    public function add($pName, $pCode, $pCounty)
+    {
+        $result = $this->mysqli->query("SELECT * FROM cities WHERE zip_code = '{$pCode}'");
+        $postInit = $result->fetch_array(MYSQLI_NUM);
+        if(empty($postInit)){
+            $query = "INSERT INTO cities VALUES ('$pCounty', '$pCode', '$pName')";
+            return $this->mysqli->query($query)->fetch_assoc();
+        }
+        else {
+            echo "<script>alert('Hiba! Nem lehetett hozzá adni a várost mert az irányító száma megegyezik egy másik településsel.');</script>";
+        }
+    }
  
 }

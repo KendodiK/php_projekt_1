@@ -7,7 +7,7 @@ function citiesDisp (selectedCounty, selectedCountyId) {
     openedId = selectedCountyId;
     selectedPrevious = selectedCounty;
     $.ajax({
-        url: 'display_cities.php',
+        url: 'open_buttons.php',
         type: 'POST',
         data: {selectedCounty: selectedCounty},
         success: function (result) {
@@ -20,7 +20,7 @@ function citiesDisp (selectedCounty, selectedCountyId) {
 }  
 function citisList (selectedCh, selectedCounty) {
     $.ajax({
-        url: 'display_cities_full.php',
+        url: 'open_cities.php',
         type: 'POST',
         data: {
             selectedCh: selectedCh,
@@ -47,6 +47,17 @@ function closeCities (county) {
         type: 'POST',
         success: function(result) {
             $('#'+county+'IdC').html(result);
+        }
+    })
+}
+function search () {
+    var city = document.getElementById("cityForSearch").innerHTML;
+    $.ajax({
+        url: 'search.php',
+        type: 'POST',
+        data: {city: city},
+        success: function(result) {
+            $('lb-search').html(result);
         }
     })
 }
