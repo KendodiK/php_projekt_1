@@ -74,7 +74,7 @@
         <h2>Város keresése</h2>
         <input id="cityForSearch" type="text">
         <input type="button" id="btn-search" value="keresés" onclick="search()">
-        <label for="lb-search"><p>blalba</p></label>
+        <label for="lb-search"><div id="lb-search"></div></label>
     </div>
 </body>
 </html>

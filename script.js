@@ -51,13 +51,14 @@ function closeCities (county) {
     })
 }
 function search () {
-    var city = document.getElementById("cityForSearch").innerHTML;
+    var city = document.getElementById("cityForSearch").value;
     $.ajax({
         url: 'search.php',
         type: 'POST',
         data: {city: city},
         success: function(result) {
-            $('lb-search').html(result);
+            $('#lb-search').html(result);
+            alert(city);
         }
     })
 }

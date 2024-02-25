@@ -5,18 +5,21 @@ if(isset($_POST['city'])) {
 
     $city = $_POST['city'];
     $dbCities = new DBCities();
-
+    
     if (isset($city)){
+        $result = "";
         $return = $dbCities->get($city);
         if(!empty($return)){
             foreach($return as $resoult){
-                echo"<p>{$resoult["zip_code"]},{$resoult["city"]},{$resoult["county"]}</p>";
+                $result .= "<p>{$resoult['zip_code']},{$resoult['city']},{$resoult['county']}</p>";
             }
         }
         else {
-            echo"<p>Nincs ilyen nevű város az adatbázisban.</p>"
+            $result .= "<p>Nincs ilyen nevű város az adatbázisban.</p>";
         }
+        echo $result;
     }
+
 }
 else {
     echo"semmi nem jó";
