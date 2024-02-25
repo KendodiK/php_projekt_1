@@ -75,7 +75,7 @@ class DBCities extends DB
 
     public function get($city)
     {
-        $query = "SELECT * FROM cities WHERE city = $city";
+        $query = "SELECT * FROM cities WHERE city = '$city'";
 
         return $this->mysqli->query($query)->fetch_assoc();
     }
