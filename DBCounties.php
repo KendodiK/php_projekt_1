@@ -112,8 +112,12 @@ class DBCounties extends DB
                 <td>{$sor['population']}</td>
                 <td><img src='{$sor['crest']}' alt='nuh uh'></td>
                 <td>
-                <button  onclick='citiesDisp(\"{$sor['county']}\",\"{$sor['id']}\")'>Városok</button>
+                <button  onclick='citiesDisp(\"{$sor['county']}\")'>Városok</button>
+                <form>
+                <button id='hozzaad'>Új város</button>
+                </form>
                 </td>
+                
             </tr>
             <label for='{$sor['county']}Id'>
                 <tr id='{$sor['county']}Id'>

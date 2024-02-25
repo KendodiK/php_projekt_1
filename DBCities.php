@@ -57,5 +57,27 @@ class DBCities extends DB
         $result = $this->mysqli->query("SELECT * FROM cities WHERE city LIKE '$char%' AND county = '$county'");
         return $result;
     }
+
+    public function delete(int $id) : bool{
+        $query = "DELETE FROM cities WHERE id = $id";
+
+        return $this->mysqli->query($query);
+    }
+
+    public function update(int $id, string $data){
+        $query = "UPDATE cities SET $data WHERE id = $id;";
+        $this->mysqli->query($query);
+
+        return $this->mysqli->get($id);
+    }
+
+    public function get(int $id): array
+    {
+        $query = "SELECT * FROM cities WHERE id = $id";
+
+        return $this->mysqli->query($query)->fetch_assoc();
+    }
+
+
  
 }

@@ -13,7 +13,16 @@ if(isset($_POST['selectedCh']) && isset($_POST['selectedCounty'])) {
         foreach($cities as $sor)
         {
             $result .= "
-                    {$sor['county']} {$sor['zip_code']} {$sor['city']} <button id='btn-mod'>Módosítás</button> <button id='btn-del'>Törlés</button> <br>
+                    {$sor['county']}
+                    {$sor['zip_code']}
+                    {$sor['city']} 
+                    <form> 
+                        <button id='btn-mod'>Módosítás</button> 
+                    </form> 
+                    <form> 
+                        <button id='btn-del'>Törlés</button>
+                    </form>
+                    <br>
                 ";
         }
         $result .= "</td>";

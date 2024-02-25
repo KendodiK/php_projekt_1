@@ -28,8 +28,20 @@
     $csvData = getCsvData($fileName);
     $countyMaker->fillCountiesWithCountyData($csvData);
     $cityMaker->fillCities($csvData);
-    $out = $countyMaker->displayTable($csvData);
+    $out = $countyMaker->displayTable();
     echo $out;
+    if (isset($_POST["btn-del"])) {
+        $id = $_POST["btn-del"];
+        $cityMaker->delete($id);
+    }
+    if (isset($_POST["btn-mod"])) {
+        $id = $_POST["btn-mod"];
+        $cityMaker->update($id, $ujnev);
+    }
+    // if (isset($_POST["btn-new"])) {
+    //     $id = $_POST["btn-mod"];
+    //     $cityMaker->update($id, $ujnev);
+    // }
     ?>
 
     
