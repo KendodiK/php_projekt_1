@@ -41,7 +41,7 @@
     }
     ?>
 
-    <div>
+    <div id>
         <h2>Város hozzáadása</h2>
         <form>
             <p><a>Város neve:</a>
@@ -74,7 +74,7 @@
         <h2>Város keresése</h2>
         <input id="cityForSearch" type="text">
         <input type="button" id="btn-search" value="keresés" onclick="search()">
-        <label for="lb-search"><div id="lb-search"></div></label>
+        <label for="lb-search"><p id="lb-search"></p></label>
     </div>
 </body>
 </html>

@@ -10,13 +10,14 @@ if(isset($_POST['city'])) {
         $result = "";
         $return = $dbCities->get($city);
         if(!empty($return)){
-            foreach($return as $resoult){
-                $result .= "<p>{$resoult['zip_code']},{$resoult['city']},{$resoult['county']}</p>";
+            for($i = 0;$i < count($return)/3;$i++){
+                $result .= "<p>{$return['zip_code']}, {$return['city']} {$return['county']} megye</p>";
             }
         }
         else {
             $result .= "<p>Nincs ilyen nevű város az adatbázisban.</p>";
         }
+
         echo $result;
     }
 

@@ -58,7 +58,6 @@ function search () {
         data: {city: city},
         success: function(result) {
             $('#lb-search').html(result);
-            alert(city);
         }
     })
 }

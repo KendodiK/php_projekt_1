@@ -114,7 +114,7 @@ class DBCounties extends DB
                 <td>
                 <button  onclick='citiesDisp(\"{$sor['county']}\")'>Városok</button>
                 <form>
-                <button id='hozzaad'>Új város</button>
+                <button id='btn-new'>Új város</button>
                 </form>
                 </td>
                 
