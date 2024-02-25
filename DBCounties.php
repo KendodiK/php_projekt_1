@@ -1,11 +1,12 @@
 <?php
 require_once 'DB.php';
+require_once 'DBCities.php';
 
 class DBCounties extends DB
 {
     public function createTableCounties()
     {
-        $query = 'CREATE TABLE IF NOT EXISTS counties(id int, county varchar(35), capital varchar(35), population int, crest varchar(35), flag varchar(35))';
+        $query = 'CREATE TABLE IF NOT EXISTS counties(id int, county varchar(35), capital varchar(35), population int, crest varchar(50), flag varchar(35))';
         return $this->mysqli->query($query);
     }
 
@@ -18,24 +19,23 @@ class DBCounties extends DB
         $errors = [];
         $isFirst = true;
         $id = 0;
-        if(empty($row)) {
-            foreach($data as $county){
-                if($isFirst)
-                {
+        if (empty($row)) {
+            foreach ($data as $county) {
+                if ($isFirst) {
                     $isFirst = false;
                     continue;
                 }
-                if ($county[0] != ""){
+                if ($county[0] != "") {
                     $init = $this->mysqli->query("SELECT county FROM counties WHERE county = '$county[0]'");
-                    if(!$init->num_rows)
-                    {
+                    if (!$init->num_rows) {
 
                         $insert = $this->mysqli->query("INSERT INTO counties (id, county) VALUES ('$id', '$county[0]')");
                         $id = $id + 1;
-                        if(!$insert) {
+                        if (!$insert) {
                             $errors[] = $county[0];
                         }
-                        echo"$county[0]\n";
+                        //csak feltöltésre
+
                     }
                 }
             }
@@ -50,19 +50,18 @@ class DBCounties extends DB
         $row = $result->fetch_array(MYSQLI_NUM);
         $errors = [];
         $isFirst = true;
-        if(is_null($row[0])) {
-            foreach($data as $county){
-                if($isFirst)
-                {
+        if (is_null($row[0])) {
+            foreach ($data as $county) {
+                if ($isFirst) {
                     $isFirst = false;
                     continue;
                 }
                 if (isset($county[0]) && isset($county[1]) && isset($county[2]) && isset($county[3]) && isset($county[4])) {
                     $insert = $this->mysqli->query("UPDATE counties SET capital = '$county[2]', population = '$county[1]', crest = '$county[3]', flag = '$county[4]' WHERE county = '$county[0]'");
-                    if(!$insert) {
+                    if (!$insert) {
                         $errors[] = $county[2];
                     }
-                    echo"$county[2]\n";
+
                 }
             }
         }
@@ -85,39 +84,60 @@ class DBCounties extends DB
 
     }
 
-    public function abcLetters(array $abc)
-    {
-        for($i = 0; $i< count($abc); i+1) {
-        {
-            wd;
-        }
-    }
+    // public function abcLetters(array $abc)
+    // {
+    //     for($i = 0; $i< count($abc); i+1) {
+    //     {
+    //         wd;
+    //     }
+    // }
 
     public function displayTable()
     {
         $data = $this->getAll();
 
-        echo "
+        $result = "
         <table>
-        <tbody>";
+        <tbody>
+        <tr>
+                <td>Vármegye</td>
+                <td>Megyeszékhely</td>
+                <td>Megye lakossága</td>
+                <td>Megye címere</td>
+                <td>
+                Városok
+                </td>
+            </tr>";
         foreach ($data as $sor) {
-            echo "
+            $result .= "
             <tr>
                 <td>{$sor['county']}</td>
                 <td>{$sor['capital']}</td>
                 <td>{$sor['population']}</td>
-                <td><img src='{$sor['crest']}' alt='nuh uh'></td>
-                <form>
-                    <td>
-                        <button for='dropdownId' id='dropdownId' name='{$sor['id']}'>Városok</button>
-                    </td>
+                <td><img src='{$sor['crest']}' alt='anyad'></td>
+                <td>
+                <button  onclick='citiesDisp(\"{$sor['county']}\")'>Városok</button>
+                <form method='post' action='index.php'>
+                <button id='btn-new'>Új város</button>
+                </form>
+                </td>
+                
             </tr>
-            <tr id='citiesTr' style='display: none'>
-                <td colspan='5'></td>
-            </tr>
-            </form>";
+            <label for='{$sor['county']}Id'>
+                <tr id='{$sor['county']}Id'>
+                    <td colspan='5' style='display:  none'></td>
+                </tr>
+            </label>
+            <label for='{$sor['county']}IdC'>
+                <tr id='{$sor['county']}IdC'>
+                    <td colspan='5' style='display:  none'></td>
+                </tr>
+            </label>";
         }
-        echo "</table>
+        $result .= "</table>
         </tbody'>";
+
+        return $result;
     }
+
 }

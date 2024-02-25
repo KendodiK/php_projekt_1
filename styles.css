@@ -3,7 +3,7 @@ table, th, td {
 }
 table {
     border-collapse: collapse;
-    width: 25%;
+    width: 50%;
 }
 tbody{
     margin-left: 5%;
