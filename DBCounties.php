@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once 'DB.php';
 
 class DBCounties extends DB
@@ -29,7 +29,7 @@ class DBCounties extends DB
                     $init = $this->mysqli->query("SELECT county FROM counties WHERE county = '$county[0]'");
                     if(!$init->num_rows)
                     {
-                        
+
                         $insert = $this->mysqli->query("INSERT INTO counties (id, county) VALUES ('$id', '$county[0]')");
                         $id = $id + 1;
                         if(!$insert) {
@@ -37,13 +37,13 @@ class DBCounties extends DB
                         }
                         echo"$county[0]\n";
                     }
-                }  
+                }
             }
         }
         return $errors;
     }
 
-    public function fillCountiesWithCountyData(array $data) 
+    public function fillCountiesWithCountyData(array $data)
     {
         $this->createTableCounties();
         $result = $this->mysqli->query("SELECT capital FROM counties");
@@ -59,14 +59,14 @@ class DBCounties extends DB
                 }
                 if (isset($county[0]) && isset($county[1]) && isset($county[2]) && isset($county[3]) && isset($county[4])) {
                     $insert = $this->mysqli->query("UPDATE counties SET capital = '$county[2]', population = '$county[1]', crest = '$county[3]', flag = '$county[4]' WHERE county = '$county[0]'");
-                if(!$insert) {
-                    $errors[] = $county[2];
+                    if(!$insert) {
+                        $errors[] = $county[2];
+                    }
+                    echo"$county[2]\n";
                 }
-                echo"$county[2]\n";
-                }                    
             }
         }
-        
+
         return $errors;
     }
 
@@ -85,22 +85,32 @@ class DBCounties extends DB
 
     }
 
+    public function abcLetters(array $abc)
+    {
+        for($i = 0; $i< count($abc); i+1) {
+        {
+            wd;
+        }
+    }
+
     public function displayTable()
     {
         $data = $this->getAll();
-        
+
         echo "
         <table>
         <tbody>";
-        foreach($data as $sor)
-        {
+        foreach ($data as $sor) {
             echo "
             <tr>
                 <td>{$sor['county']}</td>
                 <td>{$sor['capital']}</td>
                 <td>{$sor['population']}</td>
                 <td><img src='{$sor['crest']}' alt='nuh uh'></td>
-                <form><td><button for='dropdownId' id='dropdownId' name='{$sor['id']}'>Városok</button></td>
+                <form>
+                    <td>
+                        <button for='dropdownId' id='dropdownId' name='{$sor['id']}'>Városok</button>
+                    </td>
             </tr>
             <tr id='citiesTr' style='display: none'>
                 <td colspan='5'></td>
