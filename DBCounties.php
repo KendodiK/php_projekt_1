@@ -117,7 +117,7 @@ class DBCounties extends DB
                 <td><img src='{$sor['crest']}' alt='anyad'></td>
                 <td>
                 <button  onclick='citiesDisp(\"{$sor['county']}\")'>Városok</button>
-                <form method='post' action='index.php'>
+                <form>
                 <button id='btn-new'>Új város</button>
                 </form>
                 </td>
