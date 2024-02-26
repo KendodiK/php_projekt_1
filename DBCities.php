@@ -67,9 +67,24 @@ class DBCities extends DB
 
     public function update($id, $zip, $city, $county)
     {
-        $query = "UPDATE cities SET county = '$county', zip_code = '$zip', city = '$city' WHERE zip_code = $id;";
-
-        return $this->mysqli->query($query);
+        $result = $this->mysqli->query("SELECT * FROM cities WHERE zip_code = '{$zip}'");
+        $old = $this->mysqli->query("SELECT * FROM cities WHERE zip_code = '{$id}'");
+        $zipSearchResoult = $result->fetch_array(MYSQLI_NUM);
+        $oldInit = $old->fetch_array(MYSQLI_NUM);
+        if (empty($zipSearchResoult)){
+            $query = "UPDATE cities SET county = '$county', zip_code = '$zip', city = '$city' WHERE zip_code = $id;";
+            return $this->mysqli->query($query);
+        }
+        else{
+            if ($oldInit[2] == $zipSearchResoult[2] && $oldInit[0] == $zipSearchResoult[0]) {
+                $query = "UPDATE cities SET county = '$county', zip_code = '$zip', city = '$city' WHERE zip_code = $id;";
+                return $this->mysqli->query($query);
+            } else {
+                echo "<script>alert('Hiba! Nem lehetett módosítani a várost mert az irányító száma megegyezik egy másik településével.');</script>";
+            }
+        }
+        
+        
     }
 
     public function get($city)
@@ -89,8 +104,8 @@ class DBCities extends DB
     public function add($pName, $pCode, $pCounty)
     {
         $result = $this->mysqli->query("SELECT * FROM cities WHERE zip_code = '{$pCode}'");
-        $postInit = $result->fetch_array(MYSQLI_NUM);
-        if (empty($postInit)) {
+        $zipSearchResoult = $result->fetch_array(MYSQLI_NUM);
+        if (empty($zipSearchResoult)) {
             $query = "INSERT INTO cities VALUES ('$pCounty', '$pCode', '$pName')";
             return $this->mysqli->query($query)->fetch_assoc();
         } else {

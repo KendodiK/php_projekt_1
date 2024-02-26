@@ -33,9 +33,14 @@ img{
     position: fixed;
 }
 .kereses{
-    right: 20%;    
+    right: 110px;
+    top: 33%;
     position: fixed;
 }
-.hatter{
-    color: black;
+.modosit{
+    position: fixed;
+    left:53%
 }
+/* .hatter{
+    color: black;
+} */
