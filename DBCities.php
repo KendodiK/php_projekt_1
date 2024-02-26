@@ -80,6 +80,13 @@ class DBCities extends DB
         return $this->mysqli->query($query)->fetch_assoc();
     }
 
+    public function getCityByZip($zip)
+    {
+        $query = "SELECT * FROM cities WHERE zip_code = '$zip'";
+
+        return $this->mysqli->query($query)->fetch_assoc();
+    }
+
     public function add($pName, $pCode, $pCounty)
     {
         $result = $this->mysqli->query("SELECT * FROM cities WHERE zip_code = '{$pCode}'");
