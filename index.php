@@ -84,10 +84,12 @@
             <input type="button" id="btn-search" value="keresés" onclick="search()">
             <label for="lb-search"><p id="lb-search"></p></label>
         </div>
+
+        <label for="modify"><div id="modify">
+        </div></label>
     </div>
 
-    <label for="modify"><div id="modify">
-    </div></label>
+    
     
 </body>
 
