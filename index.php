@@ -64,7 +64,7 @@
             </p>
             <input id='btn-new' type="submit" value="Város felvétele"></p>
         </form>
-    </div> -->
+    </div>
 
     <?php
     if (isset($_POST["btn-new"])) {
@@ -76,12 +76,16 @@
     }
     ?>
 
-    <!-- <div>
+    <div>
         <h2>Város keresése</h2>
         <input id="cityForSearch" type="text">
         <input type="button" id="btn-search" value="keresés" onclick="search()">
         <label for="lb-search"><p id="lb-search"></p></label>
     </div>
+
+    <label for="modify"><div id="modify">
+    </div></label>
+    
 </body>
 
 </html>
