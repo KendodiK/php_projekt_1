@@ -77,21 +77,19 @@ class DBCities extends DB
         $old = $this->mysqli->query("SELECT * FROM cities WHERE zip_code = '{$id}'");
         $zipSearchResoult = $result->fetch_array(MYSQLI_NUM);
         $oldInit = $old->fetch_array(MYSQLI_NUM);
-        if (empty($zipSearchResoult)){
+        if (is_null($zipSearchResoult) || empty($zipSearchResoult)){
             $query = "UPDATE cities SET county = '$county', zip_code = '$zip', city = '$city' WHERE zip_code = $id;";
             return $this->mysqli->query($query);
         }
-        else{
-            if ($oldInit[2] == $zipSearchResoult[2] && $oldInit[0] == $zipSearchResoult[0]) {
-                $query = "UPDATE cities SET county = '$county', zip_code = '$zip', city = '$city' WHERE zip_code = $id;";
-                return $this->mysqli->query($query);
-            } else {
-                echo "<script>alert('Hiba! Nem lehetett módosítani a várost mert az irányító száma megegyezik egy másik településével.');</script>";
-            }
+        if ($oldInit[2] == $zipSearchResoult[2] && $oldInit[0] == $zipSearchResoult[0]) {
+            $query = "UPDATE cities SET county = '$county', zip_code = '$zip', city = '$city' WHERE zip_code = $id;";
+            return $this->mysqli->query($query);
         }
-        
+        echo "<script>alert('Hiba! Nem lehetett módosítani a várost mert az irányító száma megegyezik egy másik településével.');</script>";
+            
         
     }
+
 
     public function get($city)
     {
