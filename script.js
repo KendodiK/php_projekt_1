@@ -61,3 +61,13 @@ function search () {
         }
     })
 }
+function modify (zipId) {
+    $.ajax({
+        url: 'modify.php',
+        type: 'POST',
+        data: {zipId: zipId},
+        success: function(result) {
+            $('#modify').html(result);
+        }
+    })
+}
