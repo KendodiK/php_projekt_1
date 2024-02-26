@@ -4,6 +4,7 @@ table, th, td {
 table {
     border-collapse: collapse;
     width: 50%;
+    float: left;
 }
 tbody{
     margin-left: 5%;
@@ -18,4 +19,23 @@ img{
     height: 25%;
     /* margin-left: 5px;
     margin-right: 5px; */
+}
+.gomb{
+    position: relative;
+    display:inline-block
+}
+.sorba{
+    position: relative;
+    display:inline-block
+}
+.hozzaad{
+    right: 40px;    
+    position: fixed;
+}
+.kereses{
+    right: 20%;    
+    position: fixed;
+}
+.hatter{
+    color: black;
 }

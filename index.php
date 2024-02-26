@@ -43,28 +43,7 @@
     }
     ?>
 
-    <div id>
-        <h2>Város hozzáadása</h2>
-        <form>
-            <p><a>Város neve:</a>
-                <input type="text" id="newCityName">
-            </p>
-            <p><a>Város irányítószáma:</a>
-                <input type="number" id="newCityPostalCode">
-            </p>
-            <p><a>Megye:</a>
-                <select name="counties" id="chosenCounty">
-                    <?php
-                    $counties = $countyMaker->getAll();
-                    foreach ($counties as $county) {
-                        echo "<option value='{$county['id']}'>{$county['county']}</option>";
-                    }
-                    ?>
-                </select>
-            </p>
-            <input id='btn-new' type="submit" value="Város felvétele"></p>
-        </form>
-    </div>
+
 
     <?php
     if (isset($_POST["btn-new"])) {
@@ -75,12 +54,36 @@
         $cityMaker->add($name, $code, $county);
     }
     ?>
+    <div class='hatter'>
+        <div class='hozzaad'>
+            <h2>Város hozzáadása</h2>
+            <form>
+                <p><a>Város neve:</a>
+                    <input type="text" id="newCityName">
+                </p>
+                <p><a>Város irányítószáma:</a>
+                    <input type="number" id="newCityPostalCode">
+                </p>
+                <p><a>Megye:</a>
+                    <select name="counties" id="chosenCounty">
+                        <?php
+                        $counties = $countyMaker->getAll();
+                        foreach ($counties as $county) {
+                            echo "<option value='{$county['id']}'>{$county['county']}</option>";
+                        }
+                        ?>
+                    </select>
+                </p>
+                <input id='btn-new' type="submit" value="Város felvétele"></p>
+            </form>
+        </div>
 
-    <div>
-        <h2>Város keresése</h2>
-        <input id="cityForSearch" type="text">
-        <input type="button" id="btn-search" value="keresés" onclick="search()">
-        <label for="lb-search"><p id="lb-search"></p></label>
+        <div class='kereses'>
+            <h2>Város keresése</h2>
+            <input id="cityForSearch" type="text">
+            <input type="button" id="btn-search" value="keresés" onclick="search()">
+            <label for="lb-search"><p id="lb-search"></p></label>
+        </div>
     </div>
 
     <label for="modify"><div id="modify">
