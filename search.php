@@ -9,7 +9,7 @@ if (isset($_POST['city'])) {
     if (isset($city)) {
         try {
             $return = $dbCities->getCityByZip($city);
-            if($return['county'] == "") {
+            if(empty($return) || $return['county'] == "") {
                 throw new Exception();
             }
         } catch (Exception $e) {
