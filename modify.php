@@ -14,7 +14,7 @@ if (isset($_POST['zipId'])) {
                 <p><a>Város: </a><input type='text' value='{$city['city']}' id='newNameFromMod'></input></p>
                 <p><a>Megye: </a><input type='text' value='{$city['county']}' id='newCountyFromMod'></input></p>
                 <p><a>Irányító szám: </a><input type='text' value='{$city['zip_code']}' id='newZipCodeFromMod'></input></p>
-                <button type='submit' id='btn-modify' name='btn-modify' value='módosítás'></button>
+                <button type='submit' id='btn-mod' name='btn-mod' value='{$zipId}'>módosítás</button>
             </form>";
     }
 } else {

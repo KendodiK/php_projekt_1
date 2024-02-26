@@ -37,9 +37,21 @@
         $zip = $_POST["btn-del"];
         $cityMaker->delete($zip);
     }
+
     if (isset($_POST["btn-mod"])) {
         $id = $_POST["btn-mod"];
-        $cityMaker->update($id, $ujnev);
+        $city = $_POST["newNameFromMod"];
+        $county = $_POST["newCountyFromMod"];
+        $zip = $_POST["newZipCodeFromMod"];
+
+        $cityMaker->update($id, $zip, $city, $county);
+        $modified = $cityMaker->getCityByZip($zip);
+
+        if($modified['city'] != $city || $modified['county'] != $county || $modified['zip_code'] != $zip) {
+            echo "<script>alert('Sikerertelen módosítás próbálja meg úja!');</script>";
+        } else {
+            echo "<script>alert('Sikereres módosítás!');</script>";
+        }
     }
     ?>
 

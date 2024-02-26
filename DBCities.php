@@ -65,12 +65,11 @@ class DBCities extends DB
         return $this->mysqli->query($query);
     }
 
-    public function update(int $id, string $data)
+    public function update($id, $zip, $city, $county)
     {
-        $query = "UPDATE cities SET $data WHERE id = $id;";
-        $this->mysqli->query($query);
+        $query = "UPDATE cities SET county = '$county', zip_code = '$zip', city = '$city' WHERE zip_code = $id;";
 
-        return $this->mysqli->get($id);
+        return $this->mysqli->query($query);
     }
 
     public function get($city)

@@ -16,7 +16,7 @@ if (isset($_POST['selectedCh']) && isset($_POST['selectedCounty'])) {
                     {$sor['zip_code']}
                     {$sor['city']} 
                     <button onclick='modify(\"{$sor['zip_code']}\")'>Módosítás</button>
-                    <form method='post'>
+                    <form class='sorba' method='post'>
                         <button type='submit' id='btn-del' name='btn-del' value='{$sor['zip_code']}'>Törlés</button>
                     </form>
                     <br>
