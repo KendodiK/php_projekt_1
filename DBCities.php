@@ -37,6 +37,14 @@ class DBCities extends DB
         return $errors;
     }
 
+    public function getAllCities()
+    {
+        $query = "SELECT * FROM cities";
+
+        return $this->mysqli->query($query)->fetch_all(MYSQLI_ASSOC);
+
+    }
+
     public function getABCbyCounty($county)
     {
         $resoult = $this->mysqli->query("SELECT * FROM cities WHERE county = '$county'");
@@ -87,14 +95,19 @@ class DBCities extends DB
         return $this->mysqli->query($query)->fetch_assoc();
     }
 
+
+
     public function add($pName, $pCode, $pCounty)
     {
         $result = $this->mysqli->query("SELECT * FROM cities WHERE zip_code = '{$pCode}'");
         $postInit = $result->fetch_array(MYSQLI_NUM);
-        if (empty($postInit)) {
-            $query = "INSERT INTO cities VALUES ('$pCounty', '$pCode', '$pName')";
-            return $this->mysqli->query($query)->fetch_assoc();
-        } else {
+        if (is_null($postInit) || count($postInit) <= 3) 
+        {
+            $query = "INSERT INTO cities VALUES ('$pCounty[county]', '$pCode', '$pName')";
+            return $this->mysqli->query($query);
+        } 
+        else 
+        {
             echo "<script>alert('Hiba! Nem lehetett hozzá adni a várost mert az irányító száma megegyezik egy másik településsel.');</script>";
         }
     }
