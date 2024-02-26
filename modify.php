@@ -11,10 +11,10 @@ if (isset($_POST['zipId'])) {
         
         echo"<h2>Város módosítása</h2>
             <form method='POST'>
-                <input type='text' value='{$sor['city']}' id='newNameFromMod'></input>
-                <input type='text' value='{$sor['county']}' id='newCountyFromMod'></input>
-                <input type='text' value='{$sor['zip_code']}' id='newZipCodeFromMod'></input>
-                <button type='submit' id='btn-modify' name='btn-modify'></button>
+                <p><a>Város: </a><input type='text' value='{$city['city']}' id='newNameFromMod'></input></p>
+                <p><a>Megye: </a><input type='text' value='{$city['county']}' id='newCountyFromMod'></input></p>
+                <p><a>Irányító szám: </a><input type='text' value='{$city['zip_code']}' id='newZipCodeFromMod'></input></p>
+                <button type='submit' id='btn-modify' name='btn-modify' value='módosítás'></button>
             </form>";
     }
 } else {

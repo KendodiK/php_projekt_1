@@ -68,6 +68,9 @@ function modify (zipId) {
         data: {zipId: zipId},
         success: function(result) {
             $('#modify').html(result);
+        },
+        error: function (response) {
+            alert('error!');
         }
     })
 }
