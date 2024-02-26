@@ -76,12 +76,19 @@ class DBCounties extends DB
         return $this->mysqli->query($query)->fetch_assoc();
     }
 
-    public function getAll()
+    public function getAllCounties()
     {
         $query = "SELECT * FROM counties";
 
         return $this->mysqli->query($query)->fetch_all(MYSQLI_ASSOC);
 
+    }
+
+    public function getCountyById($id)
+    {
+        $query = "SELECT county FROM counties WHERE id = $id";
+
+        return $this->mysqli->query($query)->fetch_assoc();
     }
 
     // public function abcLetters(array $abc)
@@ -94,7 +101,7 @@ class DBCounties extends DB
 
     public function displayTable()
     {
-        $data = $this->getAll();
+        $data = $this->getAllCounties();
 
         $result = "
         <table>
@@ -116,7 +123,7 @@ class DBCounties extends DB
                 <td>{$sor['population']}</td>
                 <td><img src='{$sor['crest']}' alt=':)'></td>
                 <td>
-                <button  onclick='citiesDisp(\"{$sor['county']}\")'>Városok</button>
+                <button onclick='citiesDisp(\"{$sor['county']}\")'>Városok</button>
                 </td>
                 
             </tr>

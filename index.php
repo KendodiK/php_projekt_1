@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <h1>Magyarország vármegyéi</h1>
+    <h1 class ='sticky'>Magyarország vármegyéi</h1>
     <?php
     require_once("DBCounties.php");
     require_once("DBCities.php");
@@ -53,37 +53,41 @@
             echo "<script>alert('Sikereres módosítás!');</script>";
         }
     }
-    ?>
 
-    <?php
     if (isset($_POST["btn-new"])) {
-        echo "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgatya";
         $name = $_POST["newCityName"];
         $code = $_POST["newCityPostalCode"];
-        $county = $_POST["chosenCounty"];
-        $cityMaker->add($name, $code, $county);
+        $county = $countyMaker->getCountyById($_POST["chosenCounty"]);
+        if(!empty($name) && !empty($code))
+        {
+            $cityMaker->add($name, $code, $county);
+        }
+        else
+        {
+            echo "<script>alert('Töltse ki mindhárom mezőt!');</script>";
+        }
     }
     ?>
     <div class='hozzaad'>
         <h2>Város hozzáadása</h2>
         <form method='post'>
             <p><a>Város neve:</a>
-                <input type="text" id="newCityName">
+                <input type="text" id="newCityName" name='newCityName'>
             </p>
             <p><a>Város irányítószáma:</a>
-                <input type="number" id="newCityPostalCode">
+                <input type="number" id="newCityPostalCode" name='newCityPostalCode'>
             </p>
             <p><a>Megye:</a>
-                <select name="counties" id="chosenCounty">
-                    <?php
-                    $counties = $countyMaker->getAll();
-                    foreach ($counties as $county) {
-                        echo "<option value='{$county['id']}'>{$county['county']}</option>";
-                    }
-                    ?>
-                </select>
+            <select id='chosenCounty' name='chosenCounty'>
+                <?php
+                $counties = $countyMaker->getAllCounties();
+                foreach ($counties as $county) {
+                    echo "<option value='{$county['id']}'>{$county['county']}</option>";
+                }
+                ?>
+            </select>
             </p>
-            <input id='btn-new' type="submit" value="Város felvétele"></p>
+            <input id='btn-new' name='btn-new' type="submit" value="Város felvétele"></p>
         </form>
     </div>
 
@@ -96,6 +100,12 @@
 
     <label for="modify"><div class='modosit' id="modify">
     </div></label>
+
+    <div class='export'>
+        <form method="post" action="export_db.php">
+            <button type='submit' id="btn-export" name="btn-export" title="Export to .CSV">Export CSV</button>
+        </form>
+    </div>
 
 </body>
 

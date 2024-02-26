@@ -41,6 +41,11 @@ img{
     position: fixed;
     left:53%
 }
-/* .hatter{
-    color: black;
-} */
+.export{
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+}
+.sticky{
+    position: sticky;
+}
